@@ -1,0 +1,309 @@
+[gd_scene load_steps=26 format=3 uid="uid://c1031ps30bjdd"]
+
+[ext_resource type="Script" uid="uid://kg15eommmj01" path="res://Script/player.gd" id="1_royai"]
+[ext_resource type="Texture2D" uid="uid://ds88dvvdaeyv7" path="res://Asset Pack/1769866122484.png" id="2_y8w33"]
+[ext_resource type="Texture2D" uid="uid://ckbd6la7wnr5w" path="res://Asset Pack/Sprite-0002.png" id="3_ivevv"]
+[ext_resource type="Texture2D" uid="uid://bonokfkpt1hgg" path="res://Asset Pack/Sprite-0001.png" id="3_xa75v"]
+[ext_resource type="Texture2D" uid="uid://444678syi0nu" path="res://Asset Pack/Frame_Animation.png" id="4_58ae2"]
+[ext_resource type="Script" uid="uid://br7l2asveve3t" path="res://Script/mask_inventory.gd" id="5_r6jsd"]
+[ext_resource type="Texture2D" uid="uid://xe0qt5d4b4td" path="res://Asset Pack/5 1.png" id="7_p6qlh"]
+[ext_resource type="Texture2D" uid="uid://c012nchuy7w1k" path="res://Asset Pack/4 1.png" id="8_ij4jb"]
+[ext_resource type="Texture2D" uid="uid://dyf44f4h5ft25" path="res://Asset Pack/2 1.png" id="9_c68nv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa75v"]
+atlas = ExtResource("2_y8w33")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8w33"]
+atlas = ExtResource("2_y8w33")
+region = Rect2(768, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58ae2"]
+atlas = ExtResource("2_y8w33")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivevv"]
+atlas = ExtResource("2_y8w33")
+region = Rect2(768, 0, 768, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6jsd"]
+atlas = ExtResource("2_y8w33")
+region = Rect2(1536, 0, 768, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7ghd"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xa75v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8w33")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58ae2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivevv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6jsd")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8w33"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa75v"]
+size = Vector2(13, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6qlh"]
+atlas = ExtResource("3_xa75v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8w33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6qlh")
+}],
+"loop": true,
+"name": &"Full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ivevv")
+}],
+"loop": true,
+"name": &"Zero",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sw5t"]
+atlas = ExtResource("4_58ae2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij4jb"]
+atlas = ExtResource("4_58ae2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c68nv"]
+atlas = ExtResource("4_58ae2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31lq"]
+atlas = ExtResource("4_58ae2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dof7"]
+atlas = ExtResource("4_58ae2")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ij4jb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sw5t")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij4jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c68nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dof7")
+}],
+"loop": true,
+"name": &"Select",
+"speed": 3.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_royai")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_n7ghd")
+animation = &"idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(5, -3)
+shape = SubResource("CircleShape2D_y8w33")
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4)
+shape = SubResource("RectangleShape2D_xa75v")
+
+[node name="FaceMask" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(7, -3)
+scale = Vector2(0.01, 0.01)
+
+[node name="Health_Bar" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="HBoxContainer" parent="Health_Bar"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -578.0
+offset_top = 56.0
+offset_right = -537.0
+offset_bottom = 96.0
+grow_horizontal = 2
+scale = Vector2(7, 7)
+
+[node name="Hearth3" type="TextureRect" parent="Health_Bar/HealthBar"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Hearth" type="AnimatedSprite2D" parent="Health_Bar/HealthBar/Hearth3"]
+position = Vector2(4, 4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_y8w33")
+animation = &"Full"
+
+[node name="Hearth" type="TextureRect" parent="Health_Bar/HealthBar"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Hearth" type="AnimatedSprite2D" parent="Health_Bar/HealthBar/Hearth"]
+position = Vector2(4, 4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_y8w33")
+animation = &"Full"
+
+[node name="Hearth2" type="TextureRect" parent="Health_Bar/HealthBar"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Hearth" type="AnimatedSprite2D" parent="Health_Bar/HealthBar/Hearth2"]
+position = Vector2(4, 4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_y8w33")
+animation = &"Full"
+
+[node name="Hearth4" type="TextureRect" parent="Health_Bar/HealthBar"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Hearth" type="AnimatedSprite2D" parent="Health_Bar/HealthBar/Hearth4"]
+position = Vector2(4, 4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_y8w33")
+animation = &"Full"
+
+[node name="Hearth5" type="TextureRect" parent="Health_Bar/HealthBar"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Hearth" type="AnimatedSprite2D" parent="Health_Bar/HealthBar/Hearth5"]
+position = Vector2(4, 4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_y8w33")
+animation = &"Full"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+
+[node name="MaskInventory" type="HBoxContainer" parent="Inventory" groups=["Inventory"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -156.0
+offset_right = -123.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("5_r6jsd")
+
+[node name="Inventory3" type="TextureRect" parent="Inventory/MaskInventory"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="Inventory_A" type="AnimatedSprite2D" parent="Inventory/MaskInventory/Inventory3"]
+z_index = 2
+position = Vector2(20, 20)
+sprite_frames = SubResource("SpriteFrames_ij4jb")
+animation = &"Idle"
+frame_progress = 0.54397064
+
+[node name="Mask1" type="Sprite2D" parent="Inventory/MaskInventory/Inventory3/Inventory_A"]
+position = Vector2(-0.25, 0.25)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("7_p6qlh")
+
+[node name="Inventory4" type="TextureRect" parent="Inventory/MaskInventory"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="Inventory_A" type="AnimatedSprite2D" parent="Inventory/MaskInventory/Inventory4"]
+z_index = 2
+position = Vector2(20, 20)
+sprite_frames = SubResource("SpriteFrames_ij4jb")
+animation = &"Select"
+frame_progress = 0.30117106
+
+[node name="Mask2" type="Sprite2D" parent="Inventory/MaskInventory/Inventory4/Inventory_A"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("8_ij4jb")
+
+[node name="Inventory5" type="TextureRect" parent="Inventory/MaskInventory"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="Inventory_A" type="AnimatedSprite2D" parent="Inventory/MaskInventory/Inventory5"]
+z_index = 2
+position = Vector2(20, 20)
+sprite_frames = SubResource("SpriteFrames_ij4jb")
+animation = &"Select"
+frame_progress = 0.30117106
+
+[node name="Mask3" type="Sprite2D" parent="Inventory/MaskInventory/Inventory5/Inventory_A"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("9_c68nv")
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
