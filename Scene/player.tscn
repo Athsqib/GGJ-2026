@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1031ps30bjdd"]
+[gd_scene load_steps=37 format=3 uid="uid://c1031ps30bjdd"]
 
 [ext_resource type="Script" uid="uid://kg15eommmj01" path="res://Script/player.gd" id="1_royai"]
 [ext_resource type="Texture2D" uid="uid://ds88dvvdaeyv7" path="res://Asset Pack/1769866122484.png" id="2_y8w33"]
+[ext_resource type="Texture2D" uid="uid://btv1u4l8bwy5v" path="res://Asset Pack/jump.png" id="3_4ao7i"]
 [ext_resource type="Texture2D" uid="uid://ckbd6la7wnr5w" path="res://Asset Pack/Sprite-0002.png" id="3_ivevv"]
 [ext_resource type="Texture2D" uid="uid://bonokfkpt1hgg" path="res://Asset Pack/Sprite-0001.png" id="3_xa75v"]
 [ext_resource type="Texture2D" uid="uid://444678syi0nu" path="res://Asset Pack/Frame_Animation.png" id="4_58ae2"]
@@ -9,14 +10,33 @@
 [ext_resource type="Texture2D" uid="uid://xe0qt5d4b4td" path="res://Asset Pack/5 1.png" id="7_p6qlh"]
 [ext_resource type="Texture2D" uid="uid://c012nchuy7w1k" path="res://Asset Pack/4 1.png" id="8_ij4jb"]
 [ext_resource type="Texture2D" uid="uid://dyf44f4h5ft25" path="res://Asset Pack/2 1.png" id="9_c68nv"]
+[ext_resource type="Texture2D" uid="uid://2h6qylhiq506" path="res://Asset Pack/Potrait.png" id="10_c68nv"]
+[ext_resource type="Texture2D" uid="uid://bak5y45qx3xrg" path="res://Asset Pack/potrait biasa .png" id="11_2dof7"]
+[ext_resource type="Texture2D" uid="uid://1bntc81miu5h" path="res://Asset Pack/potrait sakit.png" id="12_4ao7i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xa75v"]
 atlas = ExtResource("2_y8w33")
 region = Rect2(0, 0, 768, 768)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8w33"]
-atlas = ExtResource("2_y8w33")
-region = Rect2(768, 0, 768, 768)
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqmt2"]
+atlas = ExtResource("3_4ao7i")
+region = Rect2(0, 0, 704, 704)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c40dt"]
+atlas = ExtResource("3_4ao7i")
+region = Rect2(704, 0, 704, 704)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgjog"]
+atlas = ExtResource("3_4ao7i")
+region = Rect2(1408, 0, 704, 704)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhccw"]
+atlas = ExtResource("3_4ao7i")
+region = Rect2(2112, 0, 704, 704)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d6xm"]
+atlas = ExtResource("3_4ao7i")
+region = Rect2(2816, 0, 704, 704)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_58ae2"]
 atlas = ExtResource("2_y8w33")
@@ -47,7 +67,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y8w33")
+"texture": SubResource("AtlasTexture_eqmt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c40dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgjog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhccw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7d6xm")
 }],
 "loop": true,
 "name": &"jump",
@@ -145,13 +177,48 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sypm"]
+atlas = ExtResource("11_2dof7")
+region = Rect2(0, 0, 576, 576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn0wv"]
+atlas = ExtResource("12_4ao7i")
+region = Rect2(0, 0, 576, 576)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c31lq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sypm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn0wv")
+}],
+"loop": true,
+"name": &"sakit",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_royai")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_n7ghd")
-animation = &"idle"
+animation = &"jump"
+frame = 4
+frame_progress = 1.0
+
+[node name="FaceMask" type="Sprite2D" parent="Animation"]
+z_index = 3
+position = Vector2(200, -66.66667)
+scale = Vector2(0.3333333, 0.3333333)
+texture = ExtResource("9_c68nv")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(5, -3)
@@ -161,21 +228,16 @@ shape = SubResource("CircleShape2D_y8w33")
 position = Vector2(1, 4)
 shape = SubResource("RectangleShape2D_xa75v")
 
-[node name="FaceMask" type="Sprite2D" parent="."]
-z_index = 3
-position = Vector2(7, -3)
-scale = Vector2(0.01, 0.01)
-
 [node name="Health_Bar" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="HBoxContainer" parent="Health_Bar"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -578.0
-offset_top = 56.0
-offset_right = -537.0
-offset_bottom = 96.0
+offset_left = -484.0
+offset_top = 59.0
+offset_right = -443.0
+offset_bottom = 99.0
 grow_horizontal = 2
 scale = Vector2(7, 7)
 
@@ -304,6 +366,27 @@ frame_progress = 0.30117106
 [node name="Mask3" type="Sprite2D" parent="Inventory/MaskInventory/Inventory5/Inventory_A"]
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("9_c68nv")
+
+[node name="Potrait" type="CanvasLayer" parent="."]
+
+[node name="Potrait" type="VBoxContainer" parent="Potrait"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Potrait" type="TextureRect" parent="Potrait/Potrait"]
+layout_mode = 2
+
+[node name="Potrait" type="Sprite2D" parent="Potrait/Potrait/Potrait"]
+position = Vector2(84, 81)
+scale = Vector2(4, 4)
+texture = ExtResource("10_c68nv")
+
+[node name="Potrait" type="AnimatedSprite2D" parent="Potrait/Potrait/Potrait/Potrait"]
+position = Vector2(-0.99999994, 1.4999999)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_c31lq")
+animation = &"idle"
+autoplay = "idle"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
