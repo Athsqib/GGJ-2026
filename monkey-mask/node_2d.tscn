@@ -2736,6 +2736,7 @@ sources/4 = SubResource("TileSetAtlasSource_d2bti")
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_wtcfe")]
+visible = false
 position = Vector2(77, 585)
 
 [node name="TileMap" type="TileMap" parent="."]

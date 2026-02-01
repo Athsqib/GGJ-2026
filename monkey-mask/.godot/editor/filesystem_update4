@@ -1,4 +1,6 @@
-res://gudang.tscn
-res://Map.tscn
 res://node_2d.tscn
-res://Scene/player.tscn
+res://Map.tscn
+res://gudang.tscn
+res://Scene/gudang.tscn
+res://Scene/character_body_2d.gd
+res://Scene/rigid_body_2d.gd
