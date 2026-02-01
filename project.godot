@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GGJ 2026"
-run/main_scene="uid://dlatovmxdq3i5"
+run/main_scene="uid://c7us6m4awk81l"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TransationFade="*res://transation_fade.tscn"
 
 [display]
 
