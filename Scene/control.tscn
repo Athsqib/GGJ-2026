@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgvmt37j8q087"]
+
+[ext_resource type="Texture2D" uid="uid://8p81p7ctmhl0" path="res://Asset Pack/BACKGROUND (2).png" id="1_0fbet"]
+[ext_resource type="Script" uid="uid://donfrqqjwqag2" path="res://Script/option.gd" id="1_l7dqm"]
+[ext_resource type="Texture2D" uid="uid://vl6rxtrcboix" path="res://Asset Pack/Group 6.png" id="3_l7dqm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4k4du"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kag2x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s61rb"]
+region_rect = Rect2(0, 0, 243, 80)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yx3qh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l7dqm")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0fbet")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.5
+offset_top = -372.0
+offset_right = 125.5
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Com" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_4k4du")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kag2x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s61rb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_yx3qh")
+icon = ExtResource("3_l7dqm")
+
+[connection signal="pressed" from="VBoxContainer/Com" to="." method="_on_com_pressed"]
