@@ -9,7 +9,6 @@ func _ready():
 	color_rect.visible = false
 	animation.animation_finished.connect(_on_animation_finished)
 
-
 func _on_animation_finished(anim_name):
 	if anim_name == "fadetoBlack":
 		on_transition_finished.emit()
