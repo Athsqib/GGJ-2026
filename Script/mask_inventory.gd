@@ -2,9 +2,9 @@ extends HBoxContainer
 
 @onready var mask_inventory: HBoxContainer = $"."
 
-var unlocked_slots : Array[bool] = [false, false, false]
+var unlocked_slots : Array[bool] = [true, true, true]
 var inventory_list : Array[TextureRect]
-var slot = 3
+var slots = 3
 var items_held = 0
 
 func _ready() -> void:
@@ -31,7 +31,7 @@ func add_item(new_texture: Texture2D):
 		play_pick_effect(items_held)
 		items_held += 1
 
-func _input(event: InputEvent) -> void:
+func _input(_InputEvent) -> void:
 	if Input.is_action_just_pressed("Inventory 1"):
 		activate_slot(0)
 	elif Input.is_action_just_pressed("Inventory 2"):
